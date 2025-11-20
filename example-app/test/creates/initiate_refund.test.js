@@ -8,7 +8,11 @@ zapier.tools.env.inject();
 
 describe('creates.initiate_refund', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      reference : 'test_ref_00123456795',
+      customer_note : '' || null,
+      merchant_note : '' || null,
+    },
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY,
       },

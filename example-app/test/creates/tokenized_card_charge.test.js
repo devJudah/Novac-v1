@@ -8,7 +8,15 @@ zapier.tools.env.inject();
 
 describe('creates.tokenized_card_charge', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      token: 'tok_123456789101112',
+      amount: 5000,
+      currency: 'NGN',
+      reference: 'charge_ref_123456',
+      firstname: 'John',
+      lastname: 'Doe',
+      email: 'john@example.com'
+    },
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY,
       },

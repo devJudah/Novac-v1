@@ -6,9 +6,6 @@ const getGetBanks = require("./triggers/get_banks");
 
 const addApiKeyHeader = require('./before-request');
 
-const getCheckoutPaymentLink = require("./triggers/checkout_payment_link");
-
-const getCheckoutPayment = require("./triggers/checkout_payment");
 
 const createCreateCheckoutPaymentLink = require("./creates/create_checkout_payment_link");
 
@@ -78,6 +75,8 @@ const createGetVirtualAccountByReference = require("./creates/get_virtual_accoun
 
 const createVerifyTransaction = require("./creates/verify_transaction");
 
+const createDirectCardChargeInternalV3 = require("./creates/direct_card_charge_internal_v3");
+
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
   // Zapier will need to know these before we can upload.
@@ -99,8 +98,7 @@ module.exports = {
   triggers: {
     [getRecipe.key]: getRecipe,
     [getGetBanks.key]: getGetBanks,
-    [getCheckoutPaymentLink.key]: getCheckoutPaymentLink,
-    [getCheckoutPayment.key]: getCheckoutPayment,
+
     [getPaymentWebhook.key]: getPaymentWebhook,
     [getFilterRefunds.key]: getFilterRefunds
   },
@@ -141,7 +139,8 @@ module.exports = {
     [createCreateVirtualAccount.key]: createCreateVirtualAccount,
     [createGetVirtualAccount.key]: createGetVirtualAccount,
     [createGetVirtualAccountByReference.key]: createGetVirtualAccountByReference,
-    [createChargeTokenizedCardCharge.key]: createChargeTokenizedCardCharge 
+    [createChargeTokenizedCardCharge.key]: createChargeTokenizedCardCharge,
+    [createDirectCardChargeInternalV3.key]: createDirectCardChargeInternalV3
   },
 
   resources: {},

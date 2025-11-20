@@ -33,7 +33,7 @@ const perform = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'retrieve_transaction_fee',
+  key: 'retrieve_transaction_fees',
   noun: 'Transaction Fee',
 
   display: {

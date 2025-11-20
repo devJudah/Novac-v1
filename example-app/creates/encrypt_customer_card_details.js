@@ -17,18 +17,19 @@ const perform = async (z, bundle) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-      // Authorization headers injected through auth or beforeRequest hook
+      // Authorization headers injected through auth or beforeRequest hook if required
     },
     body: JSON.stringify(body)
   });
 
-  const data = response.data;
+  // The API returns the encrypted string as plain text in response.content
+  const encryptedString = response.content;
 
   return {
-    id: data.data.reference || bundle.inputData.reference,
-    status: data.status,
-    message: data.message,
-    encryptedData: data.data.encryptedData  // Adjust as per your API's exact field name
+    id: bundle.inputData.reference,
+    status: true,
+    message: 'Card details encrypted successfully',
+    encryptedData: encryptedString
   };
 };
 
@@ -54,10 +55,10 @@ module.exports = {
     perform,
 
     sample: {
-      id: 'ref_1234',
+      id: 'encrypt_ref_123456789101112',
       status: true,
       message: 'Card details encrypted successfully',
-      encryptedData: 'some_encrypted_string_here'
+      encryptedData: 'cf7b17f856aedd58d657ba9d1ca99374994c696060897fd599e29e921d799f65e...'
     },
 
     outputFields: [

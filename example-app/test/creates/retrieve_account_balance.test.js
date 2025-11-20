@@ -12,7 +12,9 @@ describe('creates.retrieve_account_balance', () => {
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY || 'test_dummy_secret',  // fallback
       },
-      inputData: {} };
+      inputData: {
+        currency: 'NGN'
+      } };
 
     const results = await appTester(App.creates['retrieve_account_balance'].operation.perform, bundle);
     expect(results).toBeDefined();

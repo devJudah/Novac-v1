@@ -22,7 +22,7 @@ const perform = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'retrieve_3ds_challenge_status',
+  key: 'retrieve_3_ds_challenge_status',
   noun: '3DS Challenge Status',
 
   display: {

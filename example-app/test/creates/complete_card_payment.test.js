@@ -8,8 +8,14 @@ zapier.tools.env.inject();
 
 describe('creates.complete_card_payment', () => {
   it('should run', async () => {
-    const bundle = { inputData: {
-      transactionReference: 'trx_123456',
+    const bundle = { 
+      inputData: {
+      cardNumber: '5555555555554444',
+      expiryMonth: '12',
+      expiryYear: '2030',
+      cvv: '123',
+      cardPin: '1234',
+      transactionReference: 'test_ref_00123456790'
     },
       authData: {
         publicKey: process.env.NOVAC_PUBLIC_KEY || 'test_dummy_secret',  // fallback

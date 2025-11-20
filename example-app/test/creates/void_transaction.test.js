@@ -8,7 +8,9 @@ zapier.tools.env.inject();
 
 describe('creates.void_transaction', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      transactionReference: 'test_ref_00123456796'
+    },
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY,
       },

@@ -8,7 +8,14 @@ zapier.tools.env.inject();
 
 describe('creates.encrypt_customer_card_details', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      number: '5555555555554444',
+      expiryMonth: '12',
+      expiryYear: '2030',
+      cvv: '123',
+      pin: '1234',
+      reference: 'encrypt_ref_123456789101112'
+    },
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY,
       },

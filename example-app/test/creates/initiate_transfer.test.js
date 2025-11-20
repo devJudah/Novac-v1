@@ -8,7 +8,16 @@ zapier.tools.env.inject();
 
 describe('creates.initiate_transfer', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      currency: 'NGN',
+      amount: 100,
+      bankCode: '090291',
+      bankName: 'HALA MFB',
+      accountNumber: '1234567890',
+      accountName: 'John Doe',
+      narration: 'Test Transfer',
+      reference: 'test_transfer_001',
+    },
       authData: {
         secretKey: process.env.NOVAC_SECRET_KEY,
       },
@@ -17,5 +26,5 @@ describe('creates.initiate_transfer', () => {
     const results = await appTester(App.creates['initiate_transfer'].operation.perform, bundle);
     expect(results).toBeDefined();
     // TODO: add more assertions
-  });
+  }, 30000);
 });

@@ -8,9 +8,12 @@ zapier.tools.env.inject();
 
 describe('creates.validate_customer_card_details', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      reference: 'test_ref_00123456795' || null,
+      otp : '' || null 
+    },
       authData: {
-        secretKey: process.env.NOVAC_SECRET_KEY,
+        publicKey: process.env.NOVAC_PUBLIC_KEY,
       },
     };
 

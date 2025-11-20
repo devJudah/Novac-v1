@@ -8,9 +8,13 @@ zapier.tools.env.inject();
 
 describe('creates.retrieve_transaction_fees', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      transactionReference:'test_ref_00123456795' || null,
+      paymentType:'' || null,
+      cardBin:'' || null
+    },
       authData: {
-        secretKey: process.env.NOVAC_SECRET_KEY,
+        publicKey: process.env.NOVAC_PUBLIC_KEY,
       },
     };
 

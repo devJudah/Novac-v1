@@ -28,7 +28,7 @@ const perform = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'validate_card_otp',
+  key: 'validate_customer_card_details',
   noun: 'Card OTP Validation',
 
   display: {

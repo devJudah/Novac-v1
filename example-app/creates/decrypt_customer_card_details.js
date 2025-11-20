@@ -16,13 +16,16 @@ const perform = async (z, bundle) => {
     body: JSON.stringify(body)
   });
 
-  const data = response.data;
+  // The API returns plain text JSON string, parse it
+  const data = JSON.parse(response.content);
 
   return {
-    id: data.data.reference || bundle.inputData.reference,
-    status: data.status,
-    message: data.message,
-    decryptedData: data.data.decryptedData // Adjust field name based on API response structure
+    id: bundle.inputData.reference,
+    number: data.number,
+    expiryMonth: data.expiryMonth,
+    expiryYear: data.expiryYear,
+    cvv: data.cvv,
+    pin: data.pin,
   };
 };
 
@@ -58,9 +61,11 @@ module.exports = {
 
     outputFields: [
       { key: 'id', label: 'Reference' },
-      { key: 'status', label: 'Status' },
-      { key: 'message', label: 'Message' },
-      { key: 'decryptedData', label: 'Decrypted Card Data' }
+      { key: 'number', label: 'Card Number' },
+      { key: 'expiryMonth', label: 'Expiry Month' },
+      { key: 'expiryYear', label: 'Expiry Year' },
+      { key: 'cvv', label: 'CVV' },
+      { key: 'pin', label: 'PIN' },
     ]
   }
 };

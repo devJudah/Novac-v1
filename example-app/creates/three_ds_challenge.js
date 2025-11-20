@@ -31,7 +31,7 @@ const perform = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'initiate_threeds_challenge',
+  key: 'three_ds_challenge',
   noun: '3DS Challenge',
 
   display: {

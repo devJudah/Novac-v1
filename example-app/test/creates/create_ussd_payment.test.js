@@ -8,9 +8,12 @@ zapier.tools.env.inject();
 
 describe('creates.create_ussd_payment', () => {
   it('should run', async () => {
-    const bundle = { inputData: {},
+    const bundle = { inputData: {
+      transactionReference: 'test_ref_0012345673000',
+      bankCode: '000',
+    },
       authData: {
-        secretKey: process.env.NOVAC_SECRET_KEY,
+        publicKey: process.env.NOVAC_PUBLIC_KEY,
       },
     };
 
