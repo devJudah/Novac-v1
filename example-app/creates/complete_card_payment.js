@@ -10,33 +10,67 @@ const perform = async (z, bundle) => {
     transactionReference: bundle.inputData.transactionReference,
   };
 
-  const response = await z.request({
-    url: 'https://api.novacpayment.com/api/v1/card-payment',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // Authorization header injected by auth or beforeRequest hook
-    },
-    body: JSON.stringify(body),
-    
-  });
-  const data = response.data;
+  let response, data;
+  try {
+    response = await z.request({
+      url: 'https://api.novacpayment.com/api/v1/card-payment',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Authorization header injected by Zapier's beforeRequest hook if needed
+      },
+      body: JSON.stringify(body),
+    });
+    data = response.data;
+  } catch (err) {
+    // Attempt to extract a user-friendly detail from Novac's error response
+    let errorDetail = '';
+    if (
+      err.response &&
+      err.response.content &&
+      typeof err.response.content === 'string'
+    ) {
+      try {
+        const errContent = JSON.parse(err.response.content);
+        errorDetail =
+          errContent.data?.friendlyMessage ||
+          errContent.message ||
+          JSON.stringify(errContent);
+      } catch (parseErr) {
+        errorDetail = err.response.content;
+      }
+    } else {
+      errorDetail = err.message || 'Unknown error';
+    }
 
+    // Map to Zapier/JSON:API error format for consistency
+    const zapierError = {
+      errors: [
+        {
+          status: `${err.status || 400}`,
+          title: 'Payment Error',
+          detail: errorDetail,
+          source: {
+            pointer: '/data/attributes/transactionReference',
+          },
+        },
+      ],
+    };
+    throw new z.errors.Error(
+      JSON.stringify(zapierError),
+      'PaymentError',
+      err.status || 400
+    );
+  }
 
-  // try {
-  //   // Zapier may or may not parse JSON; try response.data or parse response.content
-  //   data = response.data || JSON.parse(response.content);
-  // } catch (err) {
-  //   throw new z.errors.Error('Invalid JSON response from payment API');
-  // }
-
-  // if (response.status >= 400 || data.status === false) {
-  //   throw new z.errors.Error(
-  //     data.friendlyMessage || data.message || 'Payment failed',
-  //     'PaymentError',
-  //     response.status,
-  //   );
-  // }
+  // For Novac, also check status: false for soft API error responses
+  if (response.status >= 400 || data.status === false) {
+    throw new z.errors.Error(
+      data.friendlyMessage || data.message || 'Payment failed',
+      'PaymentError',
+      response.status,
+    );
+  }
 
   return {
     id: bundle.inputData.transactionReference,
@@ -54,12 +88,10 @@ const perform = async (z, bundle) => {
 module.exports = {
   key: 'complete_card_payment',
   noun: 'Card Payment',
-
   display: {
     label: 'Complete Card Payment',
     description: 'Completes a card payment using Novac API.',
   },
-
   operation: {
     inputFields: [
       { key: 'cardNumber', type: 'string', required: true, label: 'Card Number' },
@@ -69,9 +101,7 @@ module.exports = {
       { key: 'cardPin', type: 'string', required: true, label: 'Card PIN' },
       { key: 'transactionReference', type: 'string', required: true, label: 'Transaction Reference' },
     ],
-
     perform,
-
     sample: {
       id: 'trx_123456',
       status: true,
@@ -83,7 +113,6 @@ module.exports = {
       friendlyMessage: '',
       redirectUrl: '',
     },
-
     outputFields: [
       { key: 'id', label: 'Transaction Reference' },
       { key: 'status', label: 'Status' },
