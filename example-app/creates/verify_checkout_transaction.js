@@ -18,8 +18,7 @@ const perform = async (z, bundle) => {
     status: data.status,
     message: data.message,
     transactionReference: data.data.transactionReference,
-    verificationStatus: data.data.verificationStatus,  // Assuming such a field exists
-    // Add other relevant fields based on your API response
+    verificationStatus: data.data.verificationStatus,
   };
 };
 

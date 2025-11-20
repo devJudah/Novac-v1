@@ -14,7 +14,7 @@ const perform = async (z, bundle) => {
 };
 
 module.exports = {
-  key: 'get_virtual_account_banks',
+  key: 'retrieve_virtual_acct_bank_list',
   noun: 'Virtual Account Bank',
 
   display: {

@@ -1,5 +1,7 @@
 'use strict';
 
+// Requires TOKEN FROM ALREADY USED CARD.
+
 const perform = async (z, bundle) => {
   const body = {
     token: bundle.inputData.token,

@@ -6,7 +6,7 @@ const test = async (z, bundle) => {
     url: 'https://api.novacpayment.com/api/v1/ussd-getbanks',
     method: 'GET',
     headers: {
-      Authorization: `${bundle.authData.publicKey}`
+      'Content-Type': 'application/json'
     }
   });
   return response.data;

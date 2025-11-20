@@ -14,6 +14,8 @@ const createCreateCheckoutPaymentLink = require("./creates/create_checkout_payme
 
 const createCreateTransactionPayment = require("./creates/create_transaction_payment");
 
+const createChargeTokenizedCardCharge = require("./creates/tokenized_card_charge");
+
 const createCreateUssdPayment = require("./creates/create_ussd_payment");
 
 const createRetrieveTransactionFees = require("./creates/retrieve_transaction_fees");
@@ -74,6 +76,8 @@ const createGetVirtualAccount = require("./creates/get_virtual_account");
 
 const createGetVirtualAccountByReference = require("./creates/get_virtual_account_by_reference");
 
+const createVerifyTransaction = require("./creates/verify_transaction");
+
 module.exports = {
   // This is just shorthand to reference the installed dependencies you have.
   // Zapier will need to know these before we can upload.
@@ -118,6 +122,7 @@ module.exports = {
     [createDirectCardCharge.key]: createDirectCardCharge,
     [createVerifyTransactionByPayload.key]: createVerifyTransactionByPayload,
     [createVerifyTransactionByReference.key]: createVerifyTransactionByReference,
+    [createVerifyTransaction.key]: createVerifyTransaction,
     [createEncryptCustomerCardDetails.key]: createEncryptCustomerCardDetails,
     [createDecryptCustomerCardDetails.key]: createDecryptCustomerCardDetails,
     [createThreeDsChallenge.key]: createThreeDsChallenge,
@@ -135,7 +140,8 @@ module.exports = {
     [createRetrieveVirtualAcctBankList.key]: createRetrieveVirtualAcctBankList,
     [createCreateVirtualAccount.key]: createCreateVirtualAccount,
     [createGetVirtualAccount.key]: createGetVirtualAccount,
-    [createGetVirtualAccountByReference.key]: createGetVirtualAccountByReference
+    [createGetVirtualAccountByReference.key]: createGetVirtualAccountByReference,
+    [createChargeTokenizedCardCharge.key]: createChargeTokenizedCardCharge 
   },
 
   resources: {},

@@ -4,13 +4,16 @@ const secretKeyEndpoints = [
   'void-transaction',
   'banks/account/verify',
   'direct-card-charge-auth',
+  'direct-card-charge',
+  'direct-card-charge-internal',
   'threedschallenge',
   'virtual-account',
   'refund',
   'partial-refund',
   'decrypt-data',
   'encrypt-data',
-  'transaction'
+  'transaction',
+  'tokenized-card-charge',
   // add all other sensitive endpoints here...
 ];
 
@@ -23,7 +26,7 @@ const addAuthHeaders = (request, z, bundle) => {
   if (needsSecretKey) {
     request.headers.Authorization = `Bearer ${bundle.authData.secretKey}`;
   } else {
-    request.headers.Authorization = bundle.authData.publicKey;
+    request.headers.Authorization = `Bearer ${bundle.authData.publicKey}`;
   }
 
   return request;
