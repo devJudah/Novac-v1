@@ -55,7 +55,7 @@ Follow these steps to set up your first Zap (workflow) using Novac Payments with
 ### 2. Copy the webhook URL and add it to Novac dashboard
 
 ![Webhook URL](imgs/novc7.png)
-![](imgs/novc6.png)
+![Webhook URL](imgs/novc6.png)
 *Copy your custom Zapier webhook URL and paste it into the “API-settings” section on the Novac Dashboard.*
 
 ---
@@ -68,19 +68,18 @@ Once you click “Continue”, Zapier will prompt you to add your first action. 
 
 ### 4. Choose an action (e.g., Complete Card Payment)
 
-![Zapier event selection](81EA46B5-8712-4170-AFE8-40FCCF0D0CC5.jpg)
+![Zapier event selection](imgs/novc2.png)
 *Pick an action such as “Complete Card Payment”.*
 
 ---
 
 ### 5. Use trigger data in your Novac action
-
+![Zapier event selection](imgs/novc3.png)
 You can use details from the webhook trigger—such as the transaction `reference`—as inputs to Novac for things like verifying, completing, or logging payments.
 
 ---
-
 ### 6. Add additional actions (e.g., email notifications)
-
+![Zapier event selection](imgs/novc4.png)
 You can extend your workflow with further actions—such as sending an automated email to clients if their transaction succeeds or fails.
 
 ---
