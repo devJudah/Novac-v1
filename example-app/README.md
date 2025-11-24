@@ -47,7 +47,7 @@ Follow these steps to set up your first Zap (workflow) using Novac Payments with
 
 ### 1. Set up an initial Zap to catch webhooks
 
-![Zapier Catch Hook setup](6B7E47D0-FA6E-4CBF-A940-EF38D2D38BD1.jpg)
+![Zapier Catch Hook setup](imgs/novc.png)
 *Select the “Webhooks by Zapier” app and choose “Catch Hook” as the trigger event.*
 
 ---
