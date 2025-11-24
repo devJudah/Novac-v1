@@ -55,7 +55,7 @@ Follow these steps to set up your first Zap (workflow) using Novac Payments with
 ### 2. Copy the webhook URL and add it to Novac dashboard
 
 ![Webhook URL](imgs/novc7.png)
-(imgs/novc6.png)
+![](imgs/novc6.png)
 *Copy your custom Zapier webhook URL and paste it into the “API-settings” section on the Novac Dashboard.*
 
 ---
